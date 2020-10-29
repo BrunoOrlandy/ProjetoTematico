@@ -1,0 +1,133 @@
+package br.com.view;
+
+import java.awt.Font;
+import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.ParseException;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+
+import br.com.controller.PessoaController;
+import br.com.model.Pessoa;
+import br.com.model.UsuarioLogado;
+
+public class FrameLogar extends JFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	private JPanel panel = new JPanel();
+	private JPanel tela = new JPanel();
+
+	private Pessoa pessoa = new Pessoa();
+	private UsuarioLogado usuariologado = UsuarioLogado.UsuarioLogado();
+
+	private JButton btnCadastrar;
+	private JButton btnCancelar;
+
+	private JTextField tfLogin;
+	private JPasswordField tpSenha;
+
+	private MonneyControlledFrame framePrincipal;
+	private MonneyControlledMenuFrame menuFrame = new MonneyControlledMenuFrame(framePrincipal);
+
+	private PessoaController pessoacontroller = new PessoaController();
+	private JLabel lblNewLabel;
+
+	public FrameLogar(MonneyControlledFrame framePrincipal) throws ParseException {
+		this.framePrincipal = framePrincipal;
+		setTitle("Logar ");
+		getContentPane().add(tela);
+
+		inicializaComponentes();
+
+		this.setSize(223, 226);
+		this.setLocationRelativeTo(null);
+		this.setResizable(false);
+		this.setFocusableWindowState(true);
+	}
+
+	private void inicializaComponentes() {
+		tela.setLayout(null);
+
+		Panel panel_1 = new Panel();
+		panel_1.setBounds(10, 41, 200, 113);
+		tela.add(panel_1);
+		panel_1.setLayout(null);
+
+		JLabel label_1 = new JLabel("Login: *");
+		label_1.setBounds(10, 11, 92, 14);
+		panel_1.add(label_1);
+
+		tpSenha = new JPasswordField();
+		tpSenha.setBounds(10, 80, 155, 22);
+		panel_1.add(tpSenha);
+
+		JLabel label_2 = new JLabel("Senha: *");
+		label_2.setBounds(10, 59, 92, 14);
+		panel_1.add(label_2);
+
+		tfLogin = new JTextField();
+		tfLogin.setBounds(10, 25, 155, 22);
+		panel_1.add(tfLogin);
+
+		Panel panel_2 = new Panel();
+		panel_2.setBounds(10, 160, 200, 27);
+		tela.add(panel_2);
+		panel_2.setLayout(null);
+
+		btnCadastrar = new JButton("Cancelar");
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				resetForm();
+				dispose();
+			}
+		});
+		btnCadastrar.setBounds(0, 0, 89, 23);
+		panel_2.add(btnCadastrar);
+
+		btnCancelar = new JButton("Logar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if (pessoacontroller.validarLogin(tfLogin.getText(), tpSenha.getText())) {
+					JOptionPane.showMessageDialog(null, "Bem vindo : " + tfLogin.getText());
+					usuariologado.user = tfLogin.getText();
+					System.err.println(usuariologado.user);
+				} else {
+					JOptionPane.showMessageDialog(null, "Login ou senha incorreto");
+				}
+				resetForm();
+				dispose();
+				menuFrame.setVisible(true);
+				framePrincipal.dispose();
+
+			}
+		});
+
+		btnCancelar.setBounds(111, 0, 89, 23);
+		panel_2.add(btnCancelar);
+
+		lblNewLabel = new JLabel("Login");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel.setBounds(10, 11, 200, 24);
+		tela.add(lblNewLabel);
+
+	}
+
+	public void resetForm() {
+		this.tfLogin.setText(null);
+		this.tpSenha.setText(null);
+	}
+
+}
