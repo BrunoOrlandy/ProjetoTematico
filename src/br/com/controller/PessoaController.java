@@ -9,10 +9,11 @@ import br.com.service.PessoaService;
 
 public class PessoaController {
 
+	public PessoaService service;
+
 	public void salvar(Pessoa pessoa) throws SQLException {
 
-		new PessoaService().salvar(pessoa);
-
+		service.salvar(pessoa);
 		JOptionPane.showMessageDialog(null, "Cadastro Realizado");
 
 	}
@@ -22,11 +23,10 @@ public class PessoaController {
 		Pessoa pessoa = new Pessoa();
 		pessoa.setLogin(login);
 		pessoa.setSenha(senha);
-		PessoaService pdao = new PessoaService();
 
 		Pessoa usuario;
 		try {
-			usuario = pdao.buscaLogin(pessoa);
+			usuario = service.buscaLogin(pessoa);
 
 			if (usuario == null) {
 				return false;
@@ -39,7 +39,7 @@ public class PessoaController {
 		return false;
 	}
 
-	public Pessoa buscarUsuario(String usuarioLogado) {
+	public Pessoa buscarUsuario(String usuarioLogado) throws SQLException {
 		Pessoa pessoa = new Pessoa();
 		PessoaService service = new PessoaService();
 

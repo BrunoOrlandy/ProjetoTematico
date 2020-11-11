@@ -28,8 +28,7 @@ public class FrameLogar extends JFrame {
 	private JPanel panel = new JPanel();
 	private JPanel tela = new JPanel();
 
-	private Pessoa pessoa = new Pessoa();
-	private UsuarioLogado usuariologado = UsuarioLogado.UsuarioLogado();
+	private Pessoa pessoa = new Pessoa();;
 
 	private JButton btnCadastrar;
 	private JButton btnCancelar;
@@ -101,8 +100,8 @@ public class FrameLogar extends JFrame {
 
 				if (pessoacontroller.validarLogin(tfLogin.getText(), tpSenha.getText())) {
 					JOptionPane.showMessageDialog(null, "Bem vindo : " + tfLogin.getText());
-					usuariologado.user = tfLogin.getText();
-					System.err.println(usuariologado.user);
+					UsuarioLogado.setUser(tfLogin.getText());
+					System.err.println(UsuarioLogado.getUser());
 				} else {
 					JOptionPane.showMessageDialog(null, "Login ou senha incorreto");
 				}

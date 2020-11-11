@@ -322,7 +322,7 @@ public class FrameCadastrarPessoa extends JFrame {
 		return true;
 	}
 
-	public Pessoa carregarUsuarioLogado(String string) {
+	public Pessoa carregarUsuarioLogado(String string) throws SQLException {
 		return pessoacontroller.buscarUsuario(string);
 
 	}

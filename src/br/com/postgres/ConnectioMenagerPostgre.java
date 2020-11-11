@@ -8,13 +8,18 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
-
 public class ConnectioMenagerPostgre {
 
+//	private static final String STR_DRIVER = "org.postgresql.Driver";
+//	private static final String DATABASE = "";
+//	private static final String STR_CON = "jdbc:postgresql://localhost:5432/" + DATABASE;
+//	private static final String USER = "postgres";
+//	private static final String PASSWORD = "";
+
 	private static final String STR_DRIVER = "org.postgresql.Driver";
-	private static final String DATABASE = "";
-	private static final String STR_CON = "jdbc:postgresql://localhost:5432/" + DATABASE;
-	private static final String USER = "postgres";
+	private static final String DATABASE = "zbheomkj";
+	private static final String STR_CON = "	jdbc:postgresql://tuffi.db.elephantsql.com:5432/zbheomkj";
+	private static final String USER = "zbheomkj";
 	private static final String PASSWORD = "";
 
 	private Connection conn;
