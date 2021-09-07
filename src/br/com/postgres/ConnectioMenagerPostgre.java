@@ -17,9 +17,9 @@ public class ConnectioMenagerPostgre {
 //	private static final String PASSWORD = "";
 
 	private static final String STR_DRIVER = "org.postgresql.Driver";
-	private static final String DATABASE = "zbheomkj";
-	private static final String STR_CON = "	jdbc:postgresql://tuffi.db.elephantsql.com:5432/zbheomkj";
-	private static final String USER = "zbheomkj";
+	private static final String DATABASE = "*";
+	private static final String STR_CON = "*";
+	private static final String USER = "*";
 	private static final String PASSWORD = "";
 
 	private Connection conn;
@@ -32,14 +32,14 @@ public class ConnectioMenagerPostgre {
 			conn.setAutoCommit(false);
 
 			if (conn != null) {
-				JOptionPane.showMessageDialog(null, "Conex„o com banco de dados aberta com Sucesso!", "Conex„o",
+				JOptionPane.showMessageDialog(null, "Conex√£o com banco de dados aberta com Sucesso!", "Conex√£o",
 						JOptionPane.INFORMATION_MESSAGE);
 			}
 
 			return conn;
 
 		} catch (ClassNotFoundException e) {
-			JOptionPane.showMessageDialog(null, "Conex„o falhou!", "Conex„o", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Conex√£o falhou!", "Conex√£o", JOptionPane.WARNING_MESSAGE);
 			System.exit(0);
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -78,7 +78,7 @@ public class ConnectioMenagerPostgre {
 
 			if (conn != null) {
 				rodaScript(conn);
-				JOptionPane.showMessageDialog(null, "Tabelas Criadas com sucesso!", "Conex„o",
+				JOptionPane.showMessageDialog(null, "Tabelas Criadas com sucesso!", "Conex√£o",
 						JOptionPane.INFORMATION_MESSAGE);
 			}
 
@@ -147,10 +147,10 @@ public class ConnectioMenagerPostgre {
 		try {
 			if (conn != null) {
 				conn.close();
-				System.err.println("Fechada a conex„o com banco de dados!");
+				System.err.println("Fechada a conex√£o com banco de dados!");
 			}
 		} catch (Exception e) {
-			System.err.println("N„o foi possivel fechar a conex„o com o banco de dados!");
+			System.err.println("N√£o foi possivel fechar a conex√£o com o banco de dados!");
 			e.printStackTrace();
 		}
 	}
@@ -164,7 +164,7 @@ public class ConnectioMenagerPostgre {
 				stmt.close();
 			}
 		} catch (Exception e) {
-			System.err.println("N„o foi possivel fechar o statement!");
+			System.err.println("N√£o foi possivel fechar o statement!");
 			e.printStackTrace();
 		}
 	}
